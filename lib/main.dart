@@ -1,16 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_id/src/odv/aadhaar_welcome_screen.dart';
-import 'package:simple_id/src/odv/odv_welcome_screen.dart';
-import 'package:simple_id/src/odv/onlline_document_verification_screen.dart';
-import 'package:simple_id/src/odv/phone_verification_screen.dart';
+import 'dart:async';
 
+// import 'package:simple_id/src/odv/screens/aadhaar_verification_screen.dart';
+import 'package:simple_id/src/odv/screens/capture_aadhaar_front_screen.dart';
+// import 'package:simple_id/src/odv/screens/aadhaar_welcome_screen.dart';
+// import 'package:simple_id/src/odv/screens/odv_welcome_screen.dart';
+// import 'package:simple_id/src/odv/screens/onlline_document_verification_screen.dart';
+// import 'package:simple_id/src/odv/screens/phone_verification_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras[0];
+  runApp(MyApp(camera: firstCamera));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    Key? key,
+    required this.camera,
+  }) : super(key: key);
+  final CameraDescription camera;
 
   // This widget is the root of your application.
   @override
@@ -38,7 +52,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const AadhaarWelcomeScreen(),
+      home: CaptureAadhaarFrontScreen(camera: camera),
+      // home: const AadhaarVerificationScreen(),
+      // home: const AadhaarWelcomeScreen(),
+      // home: const PhoneVerificationScreen(),
     );
   }
 }

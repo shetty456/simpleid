@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_id/src/core/theme/custom_app_theme.dart';
+import 'package:simple_id/src/odv/widgets/otp_input_widget.dart';
 
 class PhoneVerificationScreen extends StatefulWidget {
   const PhoneVerificationScreen({super.key});
@@ -51,6 +52,13 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                       labelText: 'Phone number',
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty || !RegExp(r'').hasMatch(value)) {
+                        return 'Enter correct phone number';
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
               ),
@@ -65,6 +73,22 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 ),
                 onPressed: () {
                   // Add your button action here
+                  if (_formKey.currentState!.validate()) {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: const SizedBox(
+                            height: 300,
+                            child: OtpInputWidget(),
+                          ),
+                        );
+                      },
+                    );
+                  }
                 },
                 child: const Text(
                   'Get OTP',
