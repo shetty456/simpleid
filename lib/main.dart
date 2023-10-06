@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:simple_id/src/kye/previous_employment_screen.dart';
 import 'dart:async';
 
-// import 'package:simple_id/src/odv/screens/aadhaar_verification_screen.dart';
-// import 'package:simple_id/src/odv/screens/capture_aadhaar_front_screen.dart';
-// import 'package:simple_id/src/odv/screens/aadhaar_welcome_screen.dart';
-// import 'package:simple_id/src/odv/screens/odv_welcome_screen.dart';
-// import 'package:simple_id/src/odv/screens/onlline_document_verification_screen.dart';
-// import 'package:simple_id/src/odv/screens/phone_verification_screen.dart';
+import 'package:simple_id/src/odv/screens/aadhaar_verification_screen.dart';
+import 'package:simple_id/src/odv/screens/capture_aadhaar_front_screen.dart';
+import 'package:simple_id/src/odv/screens/aadhaar_welcome_screen.dart';
+import 'package:simple_id/src/odv/screens/odv_welcome_screen.dart';
+import 'package:simple_id/src/odv/screens/onlline_document_verification_screen.dart';
+import 'package:simple_id/src/odv/screens/phone_verification_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,10 +53,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const PreviousEmploymentScreen(),
+      // ho me: const PreviousEmploymentScreen(),
       // home: CaptureAadhaarFrontScreen(camera: camera),
       // home: const AadhaarVerificationScreen(),
-      // home: const AadhaarWelcomeScreen(),
+      home: const AadhaarWelcomeScreen(),
       // home: const PhoneVerificationScreen(),
     );
   }
