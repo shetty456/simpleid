@@ -23,9 +23,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
-    required this.camera,
+    this.camera,
   }) : super(key: key);
-  final CameraDescription camera;
+
+  final CameraDescription? camera;
 
   // This widget is the root of your application.
   @override
