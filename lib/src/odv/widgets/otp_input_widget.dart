@@ -67,10 +67,17 @@ class _OtpInputWidgetState extends State<OtpInputWidget> {
               child: CircularProgressIndicator(),
             ) // Show a loading indicator
           else if (_currentState == OtpInputState.success)
-            const Text(
-              'OTP verified successfully!',
-              style: CustomerAppTheme.subtitle,
-              textAlign: TextAlign.center, // Show success message
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Icon(Icons.check_circle_outline, size: 80.0, color: Colors.green,),
+                Text(
+                  
+                  'OTP verified successfully!',
+                  style: CustomerAppTheme.subtitle,
+                  textAlign: TextAlign.center, // Show success message
+                ),
+              ],
             ),
           const SizedBox(
             height: 10,
@@ -91,12 +98,15 @@ class _OtpInputWidgetState extends State<OtpInputWidget> {
             height: 10,
           ),
           if (_currentState == OtpInputState.content)
-            OutlinedButton.icon(
-              onPressed: () {
-                loadData(); // Trigger loading data (simulate OTP verification)
-              },
-              icon: const Icon(Icons.refresh),
-              label: const Text('Resend OTP'),
+            Align(
+              alignment: Alignment.center,
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  loadData(); // Trigger loading data (simulate OTP verification)
+                },
+                icon: const Icon(Icons.refresh),
+                label: const Text('Resend OTP'),
+              ),
             )
         ],
       ),

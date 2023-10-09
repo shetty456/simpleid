@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +78,8 @@ class _PreviousEmploymentScreenState extends State<PreviousEmploymentScreen> {
                       ListTile(
                         leading: const Icon(Icons.picture_as_pdf),
                         shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.black12, width: 1),
+                          side:
+                              const BorderSide(color: Colors.black12, width: 1),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         title: Text(
@@ -131,6 +130,5 @@ class _PreviousEmploymentScreenState extends State<PreviousEmploymentScreen> {
         ),
       ),
     );
-    ;
   }
 }

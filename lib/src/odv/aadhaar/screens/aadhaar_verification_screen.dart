@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../core/theme/custom_app_theme.dart';
-import '../widgets/otp_input_widget.dart';
+import '../../../core/theme/custom_app_theme.dart';
+import '../../widgets/otp_input_widget.dart';
 
 class AadhaarVerificationScreen extends StatefulWidget {
   const AadhaarVerificationScreen({super.key});
@@ -38,11 +37,13 @@ class _AadhaarVerificationScreenState extends State<AadhaarVerificationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            const Text(
-              'Aadhaar verification',
-              style: CustomerAppTheme.title,
-              textAlign: TextAlign.left,
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Aadhaar verification',
+                style: CustomerAppTheme.title,
+                textAlign: TextAlign.left,
+              ),
             ),
             Expanded(
               child: Padding(
@@ -69,7 +70,7 @@ class _AadhaarVerificationScreenState extends State<AadhaarVerificationScreen> {
                   foregroundColor: Colors.white,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                onPressed: () {
+                onPressed:  () {
                   // Add your button action here
                   showModalBottomSheet<void>(
                     isScrollControlled: true,
