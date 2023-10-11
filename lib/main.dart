@@ -11,7 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-// import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_verification_screen.dart';
+import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_verification_screen.dart';
 
 // import 'package:simple_id/src/odv/screens/aadhaar_welcome_screen.dart';
 // import 'package:simple_id/src/odv/screens/odv_welcome_screen.dart';
@@ -56,8 +56,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // ho me: const PreviousEmploymentScreen(),
-      home: const CaptureAadhaarFrontScreen(),
-      // home: const AadhaarVerificationScreen(),
+      // home: const CaptureAadhaarFrontScreen(),
+      home: const AadhaarVerificationScreen(),
       // home: const AadhaarWelcomeScreen(),
       // home: const PhoneVerificationScreen(),
       // home: const HomePage(title: 'Crop Image')

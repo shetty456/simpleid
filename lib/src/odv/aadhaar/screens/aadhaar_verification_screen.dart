@@ -70,7 +70,7 @@ class _AadhaarVerificationScreenState extends State<AadhaarVerificationScreen> {
                   foregroundColor: Colors.white,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                onPressed:  () {
+                onPressed: () {
                   // Add your button action here
                   showModalBottomSheet<void>(
                     isScrollControlled: true,
@@ -80,7 +80,6 @@ class _AadhaarVerificationScreenState extends State<AadhaarVerificationScreen> {
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: const SizedBox(
-                          height: 300,
                           child: OtpInputWidget(),
                         ),
                       );

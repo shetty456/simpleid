@@ -6,3 +6,9 @@ sealed class AadhaarEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class AadhaarInitialEvent extends AadhaarEvent {}
+
+class AadhaarOtpVerifyEvent extends AadhaarEvent {}
+
+
