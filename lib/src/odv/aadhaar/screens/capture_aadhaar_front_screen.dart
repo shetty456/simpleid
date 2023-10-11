@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_id/src/odv/aadhaar/camera_bloc/camera_bloc.dart';
 import '../../../core/theme/custom_app_theme.dart';
+import 'display_picture_screen.dart';
 
 class CaptureAadhaarFrontScreen extends StatefulWidget {
   const CaptureAadhaarFrontScreen({
@@ -70,13 +71,10 @@ class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
               ),
               body: Column(
                 children: [
-                  Expanded(
-                    child: CameraPreview(successState.cameraController),
-                  ),
+                  Expanded(child: CameraPreview(successState.cameraController)),
                   Container(
-                    width: double.infinity, // Adjust the size as needed
-                    height: 120.0,
-                    color: Colors.black, // Adjust the size as needed
+                    height: 100.0,
+                    color: Colors.black87, // Adjust the size as needed
 
                     child: Center(
                       child: Container(
@@ -86,13 +84,12 @@ class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
                           shape: BoxShape.circle,
                           color: Colors.black, // Change the color as needed
                           border: Border.all(
-                            color: Colors
-                                .white, // Change the border color as needed
-                            width: 1.0, // Adjust the border width as needed
-                          ),
+                              color: Colors.white,
+                              width: 2.0 // Adjust the border width as needed
+                              ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: InkWell(
                             onTap: () async {
                               // Take the Picture in a try / catch block. If anything goes wrong,
@@ -111,16 +108,16 @@ class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
                                   builder: (context) => DisplayPictureScreen(
                                     // Pass the automatically generated path to
                                     // the DisplayPictureScreen widget.
-                                    imagePath: image.path,
+                                    imagePath: image.path, pickedFile: image,
                                   ),
                                 ),
                               );
                             },
                             child: Container(
                               width:
-                                  70.0, // Adjust the size of the inner circle
+                                  80.0, // Adjust the size of the inner circle
                               height:
-                                  70.0, // Adjust the size of the inner circle
+                                  80.0, // Adjust the size of the inner circle
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color:
@@ -142,84 +139,6 @@ class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
           ),
         );
       },
-    );
-  }
-}
-
-// A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        centerTitle: true,
-        title: const Text(
-          'Aadhaar Card',
-          style: CustomerAppTheme.appBarTitleStyle,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.close),
-          ),
-        ],
-      ),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Image.file(
-              File(imagePath),
-              scale: 1.0,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: () {
-                    // MaterialPageRoute(
-                    //   builder: (context) => const CaptureAadhaarFrontScreen(),
-                    // );
-                  },
-                  icon: const Icon(Icons.check),
-                  label: const Text('My card is readable'),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: Colors.blue,
-                    // foregroundColor: Colors.white,
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.restart_alt),
-                  label: const Text('Retake picture'),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
