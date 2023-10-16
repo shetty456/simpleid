@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:simple_id/src/kye/employment/widgets/upload_file_widget.dart';
 
 import '../../core/theme/custom_app_theme.dart';
 
-class ItrLoginScreen extends StatefulWidget {
-  const ItrLoginScreen({super.key});
+class ItrUploadFileScreen extends StatefulWidget {
+  const ItrUploadFileScreen({super.key});
 
   @override
-  State<ItrLoginScreen> createState() => _ItrLoginScreenState();
+  State<ItrUploadFileScreen> createState() => _ItrUploadFileScreenState();
 }
 
-class _ItrLoginScreenState extends State<ItrLoginScreen> {
-  final _formKey = GlobalKey<FormState>();
+class _ItrUploadFileScreenState extends State<ItrUploadFileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,43 +38,28 @@ class _ItrLoginScreenState extends State<ItrLoginScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
               child: Text(
-                'ITR login',
+                'ITR',
                 style: CustomerAppTheme.title,
                 textAlign: TextAlign.left,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextFormField(
-                          autofocus: true,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            hintText: 'Enter your PAN card number',
-                            labelText: 'PAN card number',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            hintText: 'Enter your password',
-                            labelText: 'Enter password',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ],
-                    ),
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UploadFile(),
+                      Row(
+                        children: [
+                          Expanded(child: Divider()),
+                          Text('OR'),
+                          Expanded(child: Divider()),
+                        ],
+                      ),
+                      UploadFile(),
+                    ],
                   ),
                 ),
               ),
@@ -89,7 +74,7 @@ class _ItrLoginScreenState extends State<ItrLoginScreen> {
                 ),
                 onPressed: () {},
                 child: const Text(
-                  'Login',
+                  'Submit',
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ),

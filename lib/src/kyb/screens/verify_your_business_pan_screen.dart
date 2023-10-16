@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/custom_app_theme.dart';
 
-class ItrLoginScreen extends StatefulWidget {
-  const ItrLoginScreen({super.key});
+class VerifyYourBusinessPanScreen extends StatefulWidget {
+  const VerifyYourBusinessPanScreen({super.key});
 
   @override
-  State<ItrLoginScreen> createState() => _ItrLoginScreenState();
+  State<VerifyYourBusinessPanScreen> createState() =>
+      _VerifyYourBusinessPanScreenState();
 }
 
-class _ItrLoginScreenState extends State<ItrLoginScreen> {
+class _VerifyYourBusinessPanScreenState
+    extends State<VerifyYourBusinessPanScreen> {
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,7 @@ class _ItrLoginScreenState extends State<ItrLoginScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
         title: const Text(
-          'Income Verification',
+          'KYB',
           style: CustomerAppTheme.appBarTitleStyle,
         ),
         actions: [
@@ -38,44 +41,38 @@ class _ItrLoginScreenState extends State<ItrLoginScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
               child: Text(
-                'ITR login',
+                'Business PAN',
                 style: CustomerAppTheme.title,
                 textAlign: TextAlign.left,
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextFormField(
-                          autofocus: true,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            hintText: 'Enter your PAN card number',
-                            labelText: 'PAN card number',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            hintText: 'Enter your password',
-                            labelText: 'Enter password',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      autofocus: true,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your Business PAN',
+                        labelText: 'Business PAN',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+              ),
+            ),
+            const Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                child: Text(
+                  'Business PAN is same as personal PAN for sole proprietorship',
+                  style: CustomerAppTheme.subtitle,
+                  textAlign: TextAlign.left,
                 ),
               ),
             ),
