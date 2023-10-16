@@ -1,7 +1,7 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_id/src/kye/employment/widgets/upload_file_widget.dart';
 
-import '../core/theme/custom_app_theme.dart';
+import '../../core/theme/custom_app_theme.dart';
 
 class PreviousEmploymentScreen extends StatefulWidget {
   const PreviousEmploymentScreen({super.key});
@@ -12,23 +12,6 @@ class PreviousEmploymentScreen extends StatefulWidget {
 }
 
 class _PreviousEmploymentScreenState extends State<PreviousEmploymentScreen> {
-  PlatformFile? file;
-  String fileName = '';
-
-  Future<void> picksinglefile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      file = result.files.first;
-      // ignore: avoid_print
-
-      file == null
-          ? false
-          : setState(() {
-              fileName = file!.name;
-            });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,46 +52,14 @@ class _PreviousEmploymentScreenState extends State<PreviousEmploymentScreen> {
                 textAlign: TextAlign.left,
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+            const Expanded(
                 child: Column(
-                  children: [
-                    if (fileName != '')
-                      ListTile(
-                        leading: const Icon(Icons.picture_as_pdf),
-                        shape: RoundedRectangleBorder(
-                          side:
-                              const BorderSide(color: Colors.black12, width: 1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        title: Text(
-                          fileName,
-                        ),
-                        trailing: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                fileName = '';
-                              });
-                            },
-                            icon: const Icon(Icons.close)),
-                      )
-                    else
-                      OutlinedButton.icon(
-                          onPressed: picksinglefile,
-                          style: TextButton.styleFrom(
-                            // backgroundColor: Colors.blue,
-                            // foregroundColor: Colors.white,
-                            minimumSize: const Size.fromHeight(50),
-                          ),
-                          icon: const Icon(Icons.file_upload),
-                          label: const Text(
-                            'Pick File',
-                          )),
-                  ],
-                ),
-              ),
-            ),
+              children: [
+                UploadFile(),
+                UploadFile(),
+                UploadFile(),
+              ],
+            )),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(

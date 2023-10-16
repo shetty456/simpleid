@@ -1,23 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_id/src/odv/aadhaar/camera_bloc/camera_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/theme/custom_app_theme.dart';
+import '../camera_bloc/camera_bloc.dart';
 import 'display_picture_screen.dart';
 
-
-class CaptureAadhaarFrontScreen extends StatefulWidget {
-  const CaptureAadhaarFrontScreen({
-    Key? key,
-  }) : super(key: key);
+class CaptureFaceScreen extends StatefulWidget {
+  const CaptureFaceScreen({super.key});
 
   @override
-  State<CaptureAadhaarFrontScreen> createState() =>
-      _CaptureAadhaarFrontScreenState();
+  State<CaptureFaceScreen> createState() => _CaptureFaceScreenState();
 }
 
-class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
+class _CaptureFaceScreenState extends State<CaptureFaceScreen> {
   @override
   void initState() {
     super.initState();
@@ -59,7 +55,7 @@ class _CaptureAadhaarFrontScreenState extends State<CaptureAadhaarFrontScreen> {
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 centerTitle: true,
                 title: const Text(
-                  'Aadhaar Card Front Image',
+                  'Capture Face',
                   style: CustomerAppTheme.appBarTitleStyle,
                 ),
                 actions: [

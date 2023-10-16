@@ -1,5 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:simple_id/src/if/employment/employment_company_name_verification.dart';
+import 'package:simple_id/src/if/employment/employment_status_screen.dart';
+import 'package:simple_id/src/if/itr/itr_verification_screen.dart';
+import 'package:simple_id/src/kye/bank/bank_account_screen.dart';
+import 'package:simple_id/src/kye/education/education_details_verification_screen.dart';
+import 'package:simple_id/src/kye/education/education_verification_screen.dart';
+import 'package:simple_id/src/kye/employment/previous_employment_screen.dart';
+import 'package:simple_id/src/kye/employment/previous_employment_verification_screen.dart';
+import 'package:simple_id/src/kye/employment/previous_employment_verify_using_phonenumber.dart';
+import 'package:simple_id/src/odv/aadhaar/screens/capture_face_screen.dart';
 
 import 'dart:async';
 import 'src/odv/aadhaar/screens/capture_aadhaar_front_screen.dart';
@@ -17,7 +27,6 @@ import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_verification_screen.da
 // import 'package:simple_id/src/odv/screens/odv_welcome_screen.dart';
 // import 'package:simple_id/src/odv/screens/onlline_document_verification_screen.dart';
 // import 'package:simple_id/src/odv/screens/phone_verification_screen.dart';
-// import 'package:simple_id/src/kye/previous_employment_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,12 +64,21 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      // ho me: const PreviousEmploymentScreen(),
+      home: const ItrVerificationScreen(),
+      // home: const EmploymentCompanyNameVerification(),
+      // home: const EmploymentStatusScreen(),
+      // home: const PreviousEmploymentScreen(),
       // home: const CaptureAadhaarFrontScreen(),
-      home: const AadhaarVerificationScreen(),
+      // home: const AadhaarVerificationScreen(),
       // home: const AadhaarWelcomeScreen(),
       // home: const PhoneVerificationScreen(),
       // home: const HomePage(title: 'Crop Image')
+      // home: const CaptureFaceScreen(),
+      // home: const BankAccountScreen(),
+      // home: const EducationVerificationScreen(),
+      // home: const EducationDetailVerificationScreen(),
+      // home: const PreviousEmploymentVerificationScreen(),
+      // home: const PreviousEmploymentVerifiyUsingPhonenumber(),
     );
   }
 }
@@ -152,7 +170,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
 
 class HomePage extends StatefulWidget {
   final String title;

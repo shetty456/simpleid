@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:simple_id/src/odv/aadhaar/screens/capture_aadhaar_back_screen.dart';
 
 import '../../../core/theme/custom_app_theme.dart';
 
@@ -140,10 +141,13 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                           foregroundColor: Colors.white,
                           minimumSize: const Size.fromHeight(50),
                         ),
-                        onPressed: () {
-                          // MaterialPageRoute(
-                          //   builder: (context) => const CaptureAadhaarFrontScreen(),
-                          // );
+                        onPressed: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const CaptureAadhaarBackSceen(),
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.check),
                         label: const Text('My card is readable'),
