@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_id/src/core/theme/custom_app_theme.dart';
+import 'package:simple_id/src/services/route/router_config.dart';
 
 class AadhaarWelcomeScreen extends StatefulWidget {
   const AadhaarWelcomeScreen({super.key});
@@ -13,8 +14,11 @@ class _AadhaarWelcomeScreenState extends State<AadhaarWelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back)),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
         title: const Text(
@@ -61,6 +65,8 @@ class _AadhaarWelcomeScreenState extends State<AadhaarWelcomeScreen> {
                 ),
                 onPressed: () {
                   // Add your button action here
+                  Navigator.pushNamed(
+                      context, AppRouterConfig.aadhaarDigilocker);
                 },
                 child: const Text(
                   'Yes, go to Digilocker flow',
@@ -76,6 +82,8 @@ class _AadhaarWelcomeScreenState extends State<AadhaarWelcomeScreen> {
                   minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {
+                  Navigator.pushNamed(
+                      context, AppRouterConfig.aadhaarNumberVerification);
                   // Add your button action here
                 },
                 child: const Text(

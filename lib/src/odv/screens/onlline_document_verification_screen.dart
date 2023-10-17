@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_id/src/core/theme/custom_app_theme.dart';
+import 'package:simple_id/src/services/route/router_config.dart';
 
 class OnlineDocumentVerificationScreen extends StatefulWidget {
   const OnlineDocumentVerificationScreen({super.key});
@@ -176,6 +177,7 @@ class _OnlineDocumentVerificationScreenState
                   minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {
+                  Navigator.pushNamed(context, AppRouterConfig.aadhaarWelcome);
                   // Add your button action here
                 },
                 child: const Text(

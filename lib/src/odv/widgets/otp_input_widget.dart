@@ -99,7 +99,6 @@ class _OtpInputWidgetState extends State<OtpInputWidget> {
               const SizedBox(
                 height: 10,
               ),
-
               const Text(
                 'Enter OTP received on your registered phone number',
                 style: CustomerAppTheme.subtitle,
@@ -170,32 +169,41 @@ class _OtpInputWidgetState extends State<OtpInputWidget> {
                         ),
                       ),
                     ),
-                    TextButton(
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          // Trigger loading data (simulate OTP verification)
+                        },
+                        icon: const Icon(Icons.refresh),
+                        label: const Text('Resend OTP'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size.fromHeight(50),
+                      ),
                       onPressed: () {
                         focusNode.unfocus();
-                        _formKey.currentState!.validate();
+                        if (!_formKey.currentState!.validate()) {
+                          return;
+                        } else {
+                          aadhaarBloc.add(AadhaarOtpVerifyEvent());
+                        }
                       },
-                      child: const Text('Validate'),
+                      child: const Text('Verify OTP'),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-
-              Align(
-                alignment: Alignment.center,
-                child: OutlinedButton.icon(
-                  onPressed: () {
-                    aadhaarBloc.add(AadhaarOtpVerifyEvent());
-
-                    // Trigger loading data (simulate OTP verification)
-                  },
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Resend OTP'),
-                ),
-              )
             ],
           ),
         );

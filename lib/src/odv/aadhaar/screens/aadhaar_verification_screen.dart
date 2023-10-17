@@ -73,6 +73,7 @@ class _AadhaarVerificationScreenState extends State<AadhaarVerificationScreen> {
                 onPressed: () {
                   // Add your button action here
                   showModalBottomSheet<void>(
+                    isDismissible: false,
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
