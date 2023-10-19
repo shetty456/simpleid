@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
 import 'package:equatable/equatable.dart';
@@ -18,10 +19,12 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     emit(CameraLoadingState());
     final cameras = await availableCameras();
     _cameraController = CameraController(
+      
       cameras[0],
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
     );
     await _cameraController!.initialize();
+    
     emit(
       CameraLoadingSuccessState(cameraController: _cameraController!),
     );
