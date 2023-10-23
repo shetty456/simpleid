@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:simple_id/src/core/theme/custom_app_theme.dart';
 import 'package:simple_id/src/services/route/router_config.dart';
 
@@ -33,6 +37,25 @@ class _OnlineDocumentVerificationScreenState
     return Colors.blue;
   }
 
+  XFile? _image;
+
+  // Function to open the camera and pick an image.
+  Future _getImage() async {
+    final imagePicker = ImagePicker();
+    final pickedImage = await imagePicker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 300,
+      maxHeight: 400,
+      imageQuality: 100,
+    );
+
+    if (pickedImage != null) {
+      setState(() {
+        _image = pickedImage;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,101 +77,101 @@ class _OnlineDocumentVerificationScreenState
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-              child: Text(
-                'Verify any one officially valid document',
-                style: CustomerAppTheme.title,
-                textAlign: TextAlign.left,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                child: Text(
+                  'Verify any one officially valid document',
+                  style: CustomerAppTheme.title,
+                  textAlign: TextAlign.left,
+                ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-              child: Text(
-                'Photo of your Government ID is required to validate your identity.',
-                style: CustomerAppTheme.subtitle,
-                textAlign: TextAlign.left,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                child: Text(
+                  'Photo of your Government ID is required to validate your identity.',
+                  style: CustomerAppTheme.subtitle,
+                  textAlign: TextAlign.left,
+                ),
               ),
-            ),
-            ListTile(
-              title: Text(
-                'Aadhaar card',
-                style: radioStyle,
+              ListTile(
+                title: Text(
+                  'Aadhaar card',
+                  style: radioStyle,
+                ),
+                trailing: Radio<Document>(
+                  value: Document.aadhaar,
+                  groupValue: _character,
+                  onChanged: (Document? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
               ),
-              trailing: Radio<Document>(
-                value: Document.aadhaar,
-                groupValue: _character,
-                onChanged: (Document? value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
+              ListTile(
+                title: Text(
+                  'PAN card',
+                  style: radioStyle,
+                ),
+                trailing: Radio<Document>(
+                  value: Document.pan,
+                  groupValue: _character,
+                  onChanged: (Document? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
               ),
-            ),
-            ListTile(
-              title: Text(
-                'PAN card',
-                style: radioStyle,
+              ListTile(
+                title: Text(
+                  'Voter ID card',
+                  style: radioStyle,
+                ),
+                trailing: Radio<Document>(
+                  value: Document.voterId,
+                  groupValue: _character,
+                  onChanged: (Document? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
               ),
-              trailing: Radio<Document>(
-                value: Document.pan,
-                groupValue: _character,
-                onChanged: (Document? value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
+              ListTile(
+                title: Text(
+                  'Driving license',
+                  style: radioStyle,
+                ),
+                trailing: Radio<Document>(
+                  value: Document.drivingLicense,
+                  groupValue: _character,
+                  onChanged: (Document? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
               ),
-            ),
-            ListTile(
-              title: Text(
-                'Voter ID card',
-                style: radioStyle,
+              ListTile(
+                title: Text(
+                  'Passport',
+                  style: radioStyle,
+                ),
+                trailing: Radio<Document>(
+                  value: Document.passport,
+                  groupValue: _character,
+                  onChanged: (Document? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
               ),
-              trailing: Radio<Document>(
-                value: Document.voterId,
-                groupValue: _character,
-                onChanged: (Document? value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: Text(
-                'Driving license',
-                style: radioStyle,
-              ),
-              trailing: Radio<Document>(
-                value: Document.drivingLicense,
-                groupValue: _character,
-                onChanged: (Document? value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: Text(
-                'Passport',
-                style: radioStyle,
-              ),
-              trailing: Radio<Document>(
-                value: Document.passport,
-                groupValue: _character,
-                onChanged: (Document? value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Checkbox(
@@ -167,26 +190,30 @@ class _OnlineDocumentVerificationScreenState
                   )
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRouterConfig.aadhaarWelcome);
-                  // Add your button action here
-                },
-                child: const Text(
-                  'Proceed',
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              if (_image != null)
+                Image.file(File(_image!.path)),
+            
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: () {
+                    // Navigator.pushNamed(context, AppRouterConfig.aadhaarWelcome);
+                    // Add your button action here
+                    _getImage();
+                  },
+                  child: const Text(
+                    'Proceed',
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

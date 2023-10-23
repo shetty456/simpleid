@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/custom_app_theme.dart';
@@ -49,6 +50,7 @@ class _CaptureAadhaarBackSceenState extends State<CaptureAadhaarBackSceen> {
             );
           case CameraLoadingSuccessState:
             final successState = state as CameraLoadingSuccessState;
+
             return Scaffold(
               appBar: AppBar(
                 leading: IconButton(
@@ -68,7 +70,18 @@ class _CaptureAadhaarBackSceenState extends State<CaptureAadhaarBackSceen> {
               ),
               body: Column(
                 children: [
-                  Expanded(child: CameraPreview(successState.cameraController)),
+                  LayoutBuilder(builder: (context, constraints) {
+                    return AspectRatio(
+                        aspectRatio: 1.0,
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: Container(
+                            width: 1,
+                            height: 1,
+                            child: CameraPreview(successState.cameraController),
+                          ),
+                        ));
+                  }),
                   Container(
                     height: 100.0,
                     color: Colors.black87, // Adjust the size as needed

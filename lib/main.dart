@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simple_id/src/odv/driving_license/dl_verification_screen.dart';
+import 'package:simple_id/src/odv/pan/screens/pan_verification_screen.dart';
+import 'package:simple_id/src/odv/passport/screens/passport_verification_screen.dart';
+import 'package:simple_id/src/odv/voterId/screens/voter_id_verification_screen.dart';
 import 'package:simple_id/src/services/route/router.dart';
 
 Future<void> main() async {
@@ -21,6 +25,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
+      // home: const PanVerificationScreen(),
+      // home: const VoterIdVerificationScreen(),
+      // home: const DrivingLicenseVerificationScreen(),
+      home: const PassportVerificationScreen(),
       onGenerateRoute: RouterService.generateRoute,
     );
   }

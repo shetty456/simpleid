@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_id/src/odv/aadhaar/screens/capture_aadhaar_back_screen.dart';
-
 import '../../../core/theme/custom_app_theme.dart';
 
 // A widget that displays the picture taken by the user.
@@ -173,53 +172,6 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               ],
             )
           : _image(),
-      // body: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-      //   children: [
-      //     Expanded(
-      //       child: Image.file(
-      //         File(widget.imagePath),
-      //         scale: 1.0,
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.all(16.0),
-      //       child: Column(
-      //         children: [
-      //           ElevatedButton.icon(
-      //             style: TextButton.styleFrom(
-      //               backgroundColor: Colors.blue,
-      //               foregroundColor: Colors.white,
-      //               minimumSize: const Size.fromHeight(50),
-      //             ),
-      //             onPressed: () {
-      //               // MaterialPageRoute(
-      //               //   builder: (context) => const CaptureAadhaarFrontScreen(),
-      //               // );
-      //             },
-      //             icon: const Icon(Icons.check),
-      //             label: const Text('My card is readable'),
-      //           ),
-      //           const SizedBox(
-      //             height: 10,
-      //           ),
-      //           ElevatedButton.icon(
-      //             style: TextButton.styleFrom(
-      //               // backgroundColor: Colors.blue,
-      //               // foregroundColor: Colors.white,
-      //               minimumSize: const Size.fromHeight(50),
-      //             ),
-      //             onPressed: () {
-      //               Navigator.pop(context);
-      //             },
-      //             icon: const Icon(Icons.restart_alt),
-      //             label: const Text('Retake picture'),
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
