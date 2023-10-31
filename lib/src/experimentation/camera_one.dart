@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image/image.dart' as img;
 import 'package:screenshot/screenshot.dart';
+import 'package:simple_id/src/experimentation/display_image.dart';
 
 import '../core/theme/custom_app_theme.dart';
 import '../odv/aadhaar/camera_bloc/camera_bloc.dart';
@@ -158,6 +162,38 @@ class _CameraOneScreenState extends State<CameraOneScreen> {
                                                 final image = await successState
                                                     .cameraController
                                                     .takePicture();
+
+                                                final screenCenter = Offset(
+                                                  // ignore: use_build_context_synchronously
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  // ignore: use_build_context_synchronously
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      2,
+                                                );
+
+                                                final x = (screenCenter.dx)
+                                                    .toInt(); // Calculate x based on center
+                                                final y = (screenCenter.dy)
+                                                    .toInt(); // Calculate y based on center
+
+                                                final newImage =
+                                                    img.decodeImage(
+                                                        File(image.path)
+                                                            .readAsBytesSync());
+                                                final croppedImage =
+                                                    img.copyCrop(
+                                                  newImage!,
+                                                  x: x,
+                                                  y: y,
+                                                  width: 360,
+                                                  height: 360,
+                                                  antialias: false
+                                                );
                                                 // final image = await screenshotController
                                                 //     .capture();
 
@@ -168,11 +204,10 @@ class _CameraOneScreenState extends State<CameraOneScreen> {
                                                     .push(
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        DisplayPictureScreen(
+                                                        DisplayImage(
+                                                      image: croppedImage,
                                                       // Pass the automatically generated path to
                                                       // the DisplayPictureScreen widget.
-                                                      imagePath: image.path,
-                                                      pickedFile: image,
                                                     ),
                                                   ),
                                                 );

@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_id/src/experimentation/display_image.dart';
+import 'package:image/image.dart' as img;
 
 import '../core/theme/custom_app_theme.dart';
 import '../odv/aadhaar/camera_bloc/camera_bloc.dart';
@@ -148,20 +152,63 @@ class _CameraTwoState extends State<CameraTwo> {
                                               // final image = await screenshotController
                                               //     .capture();
 
+                                              final screenCenter = Offset(
+                                                // ignore: use_build_context_synchronously
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                // ignore: use_build_context_synchronously
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    2,
+                                              );
+
+                                              final x = (screenCenter.dx)
+                                                  .toInt(); // Calculate x based on center
+                                              final y = (screenCenter.dy)
+                                                  .toInt(); // Calculate y based on center
+
+                                              final newImage = img.decodeImage(
+                                                  File(image.path)
+                                                      .readAsBytesSync());
+                                              final croppedImage = img.copyCrop(
+                                                  newImage!,
+                                                  x: x,
+                                                  y: y,
+                                                  width: y - 20,
+                                                  height: 250,
+                                                  );
+                                              // final image = await screenshotController
+                                              //     .capture();
+
                                               if (!mounted) return;
 
                                               // If the picture was taken, display it on a new screen.
                                               await Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DisplayPictureScreen(
+                                                      DisplayImage(
+                                                    image: croppedImage,
                                                     // Pass the automatically generated path to
                                                     // the DisplayPictureScreen widget.
-                                                    imagePath: image.path,
-                                                    pickedFile: image,
                                                   ),
                                                 ),
                                               );
+
+                                              // If the picture was taken, display it on a new screen.
+                                              // await Navigator.of(context).push(
+                                              //   MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         DisplayPictureScreen(
+                                              //       // Pass the automatically generated path to
+                                              //       // the DisplayPictureScreen widget.
+                                              //       imagePath: image.path,
+                                              //       pickedFile: image,
+                                              //     ),
+                                              //   ),
+                                              // );
                                             },
                                             child: Container(
                                               width:
@@ -222,4 +269,3 @@ class InvertedClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }
-

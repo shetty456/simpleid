@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       // home: const VoterIdVerificationScreen(),
       // home: const DrivingLicenseVerificationScreen(),
       // home: const PassportVerificationScreen(),
-      home: const ResponsiveGrid(),
+      home: const AadhaarVerificationResponsiveDesign(),
       onGenerateRoute: RouterService.generateRoute,
     );
   }
