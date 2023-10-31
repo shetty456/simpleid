@@ -1,0 +1,5 @@
+{
+  "env": "test",
+  "isDebugMode": true,
+  "baseApiUrl": "http://localhost:8081/v1"
+}
