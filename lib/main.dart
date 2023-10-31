@@ -1,22 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:simple_id/src/experimentation/camera_one.dart';
-import 'package:simple_id/src/experimentation/camera_two.dart';
-import 'package:simple_id/src/experimentation/responsive_design_of_aadhaar_verification.dart';
-import 'package:simple_id/src/experimentation/responsive_grid.dart';
-import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_verification_screen.dart';
-import 'package:simple_id/src/odv/driving_license/dl_verification_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_id/src/commons/bloc/home_page_bloc.dart';
+import 'package:simple_id/src/commons/di/dependency_provider.dart';
+import 'package:simple_id/src/commons/presentation/pages/splash_page.dart';
+
 import 'package:simple_id/src/odv/pan/screens/pan_verification_screen.dart';
-import 'package:simple_id/src/odv/passport/screens/passport_verification_screen.dart';
-import 'package:simple_id/src/odv/voterId/screens/voter_id_verification_screen.dart';
+import 'package:simple_id/src/commons/config/app_config.dart';
 import 'package:simple_id/src/services/route/router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  AppConfig.initialize();
+  DependencyProvider().init();
+  runApp(const SimpleIdSdkApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({
+class SimpleIdSdkApp extends StatelessWidget {
+  const SimpleIdSdkApp({
     Key? key,
   }) : super(key: key);
 
@@ -30,12 +32,27 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      // home: const PanVerificationScreen(),
-      // home: const VoterIdVerificationScreen(),
-      // home: const DrivingLicenseVerificationScreen(),
-      // home: const PassportVerificationScreen(),
-      home: const AadhaarVerificationResponsiveDesign(),
+      home: const RootPage(),
       onGenerateRoute: RouterService.generateRoute,
+    );
+  }
+}
+
+class RootPage extends StatelessWidget {
+  const RootPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => HomePageBloc(),
+      child: BlocBuilder<HomePageBloc, HomePageState>(
+        builder: (context, state) {
+          switch (state) {
+            case HomePageLoading(): return const SplashPage();
+            case HomePageReady(): return const PanVerificationScreen();
+          }
+        },
+      ),
     );
   }
 }

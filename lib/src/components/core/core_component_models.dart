@@ -5,6 +5,8 @@ mixin BaseComponent on Widget {
 
 abstract class BaseStatelessComponent extends StatelessWidget with BaseComponent {
   const BaseStatelessComponent({super.key});
+
+
 }
 
 abstract class BaseStatefulComponent extends StatefulWidget with BaseComponent {
