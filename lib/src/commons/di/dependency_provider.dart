@@ -12,7 +12,10 @@ class DependencyProvider {
 
   DependencyProvider._internal();
 
-  final GetIt di = GetIt.asNewInstance();
+  // final GetIt di = GetIt.asNewInstance();
+
+  // as per documentation
+  final GetIt di = GetIt.instance;
 
   void init() {
     di.registerSingleton(TransactionService());

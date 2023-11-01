@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_id/src/commons/bloc/workflow_page_manager_bloc.dart';
+import 'package:simple_id/src/commons/bloc/workflow/bloc/workflow_bloc.dart';
 import 'package:simple_id/src/core/theme/custom_app_theme.dart';
 
 class OdvWelcomeScreen extends StatelessWidget {
@@ -112,7 +112,7 @@ class OdvWelcomeScreen extends StatelessWidget {
                   minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {
-                  WorkflowBloc().add(const WorkflowExecuteEvent('CONTEXT', 'PROCEED'));
+                  
                 },
                 child: const Text(
                   'Get started',

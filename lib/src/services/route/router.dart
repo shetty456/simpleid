@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_id/src/experimentation/screen_one.dart';
+import 'package:simple_id/src/experimentation/screen_two.dart';
 import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_digilocker_flow_screen.dart';
 import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_verification_screen.dart';
 import 'package:simple_id/src/odv/aadhaar/screens/aadhaar_welcome_screen.dart';
@@ -29,6 +31,10 @@ class RouterService {
       case AppRouterConfig.aadhaarNumberVerification:
         return MaterialPageRoute(
             builder: (_) => const AadhaarVerificationScreen());
+      case AppRouterConfig.screenOne:
+        return MaterialPageRoute(builder: (_) => ScreenOne());
+      case AppRouterConfig.screenTwo:
+        return MaterialPageRoute(builder: (_) => ScreenTwo());
       default:
         return MaterialPageRoute(
           builder: (_) => const CaptureAadhaarBackSceen(),

@@ -7,7 +7,7 @@ sealed class WorkflowEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class WorkflowInitialEvent extends WorkflowEvent {}
+// class WorkflowInitialEvent extends WorkflowEvent {}
 
 class WorkflowExecuteEvent extends WorkflowEvent {
   final String page;

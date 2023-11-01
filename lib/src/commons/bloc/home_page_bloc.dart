@@ -26,6 +26,5 @@ class HomePageReady extends HomePageState {
 }
 
 sealed class HomePageEvent extends Equatable {
-
   const HomePageEvent();
 }
